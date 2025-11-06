@@ -1,0 +1,478 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.navbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    color: #2c3e50;
+    padding: 1rem 0;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.nav-logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2c3e50;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-links span {
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+.nav-links a {
+    color: #2c3e50;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Auth styles */
+.auth-container {
+    max-width: 450px;
+    margin: 4rem auto;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+}
+
+.auth-container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.auth-form {
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-success {
+    background: linear-gradient(45deg, #00b09b, #96c93d);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 176, 155, 0.3);
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 176, 155, 0.4);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Schedule styles */
+.schedule-container, .edit-container, .admin-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    margin-bottom: 2rem;
+}
+
+.schedule-container h2, .edit-container h2, .admin-container h2 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.schedule-controls {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 15px;
+}
+
+.day-selector, .class-selector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.day-selector label, .class-selector label {
+    font-weight: 600;
+    color: #2c3e50;
+    white-space: nowrap;
+}
+
+.day-selector select, .class-selector select {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    background: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.day-selector select:focus, .class-selector select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.schedule-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.schedule-table th,
+.schedule-table td {
+    padding: 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.schedule-table th {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.schedule-table tr:hover {
+    background-color: #f8f9fa;
+    transform: scale(1.01);
+    transition: all 0.2s ease;
+}
+
+.schedule-table tr:last-child td {
+    border-bottom: none;
+}
+
+.no-lessons {
+    text-align: center;
+    padding: 3rem;
+    color: #7f8c8d;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+/* Edit form styles */
+.lessons-edit {
+    margin-bottom: 2rem;
+}
+
+.lesson-edit-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.lesson-edit-row:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.lesson-number {
+    width: 60px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #667eea;
+}
+
+.lesson-fields {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+}
+
+.lesson-fields input {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    flex: 1;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.lesson-fields input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.form-actions .btn {
+    width: auto;
+    padding: 1rem 2.5rem;
+}
+
+/* Admin styles */
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.users-table th,
+.users-table td {
+    padding: 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.users-table th {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    font-weight: 600;
+}
+
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.badge-admin {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.badge-user {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    width: auto;
+}
+
+.btn-warning {
+    background: linear-gradient(45deg, #f39c12, #e67e22);
+    color: white;
+}
+
+.btn-danger {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.current-user {
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Alert styles */
+.alert {
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: linear-gradient(45deg, #00b09b, #96c93d);
+    color: white;
+}
+
+.alert-error {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.alert-info {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .auth-container {
+        margin: 2rem auto;
+        padding: 2rem;
+    }
+
+    .schedule-controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .day-selector, .class-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .lesson-fields {
+        flex-direction: column;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .users-table {
+        font-size: 0.9rem;
+    }
+}

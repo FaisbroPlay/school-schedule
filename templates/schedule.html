@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="schedule-container">
+    <h2>Расписание уроков</h2>
+    
+    <div class="schedule-controls">
+        <form method="GET" class="day-selector">
+            <label>День недели:</label>
+            <select name="day" onchange="this.form.submit()">
+                {% for i in range(days|length) %}
+                    <option value="{{ i }}" {% if i == current_day %}selected{% endif %}>{{ days[i] }}</option>
+                {% endfor %}
+            </select>
+        </form>
+        
+        <form method="GET" class="class-selector">
+            <input type="hidden" name="day" value="{{ current_day }}">
+            <label>Класс/Группа:</label>
+            <select name="class" onchange="this.form.submit()">
+                <option value="all" {% if current_class == 'all' %}selected{% endif %}>Все</option>
+                <option value="5A" {% if current_class == '5A' %}selected{% endif %}>5А</option>
+                <option value="6B" {% if current_class == '6B' %}selected{% endif %}>6Б</option>
+                <option value="7A" {% if current_class == '7A' %}selected{% endif %}>7А</option>
+                <option value="8B" {% if current_class == '8B' %}selected{% endif %}>8Б</option>
+                <option value="9A" {% if current_class == '9A' %}selected{% endif %}>9А</option>
+                <option value="10" {% if current_class == '10' %}selected{% endif %}>10 класс</option>
+                <option value="11" {% if current_class == '11' %}selected{% endif %}>11 класс</option>
+            </select>
+        </form>
+    </div>
+
+    <div class="schedule-table">
+        {% if lessons %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Предмет</th>
+                        <th>Учитель</th>
+                        <th>Кабинет</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lesson in lessons %}
+                    <tr>
+                        <td>{{ lesson.lesson_number }}</td>
+                        <td>{{ lesson.subject }}</td>
+                        <td>{{ lesson.teacher or '-' }}</td>
+                        <td>{{ lesson.classroom or '-' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-lessons">На этот день уроков нет</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
