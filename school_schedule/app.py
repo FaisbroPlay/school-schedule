@@ -4,11 +4,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key')
 
-# Используем PostgreSQL на Railway, SQLite локально
-if os.environ.get('DATABASE_URL'):
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace('postgres://', 'postgresql://')
+# Конфигурация базы данных
+if 'DATABASE_URL' in os.environ:
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL'].replace('postgres://', 'postgresql://')
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
@@ -40,28 +40,20 @@ class Lesson(db.Model):
     class_group = db.Column(db.String(50), default="all")
 
 
-def init_db():
-    with app.app_context():
-        # Создаем все таблицы
-        db.create_all()
-
-        # Создаем администратора по умолчанию, если его нет
-        if not User.query.filter_by(username='admin').first():
-            admin = User(
-                username='admin',
-                password_hash=generate_password_hash('admin123'),
-                is_admin=True
-            )
-            db.session.add(admin)
-            db.session.commit()
-            print("✅ Администратор создан: admin / admin123")
+# Инициализация базы данных
+with app.app_context():
+    db.create_all()
+    if not User.query.filter_by(username='admin').first():
+        admin = User(
+            username='admin',
+            password_hash=generate_password_hash('admin123'),
+            is_admin=True
+        )
+        db.session.add(admin)
+        db.session.commit()
 
 
-# Инициализируем базу данных при запуске
-init_db()
-
-
-# Все ваши маршруты (оставьте без изменений)
+# Маршруты
 @app.route('/')
 def index():
     if 'user_id' in session:
